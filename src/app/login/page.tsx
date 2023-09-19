@@ -4,6 +4,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
+import toast, { Toaster }  from "react-hot-toast";
 
 export default function Register() {
   const router = useRouter();
@@ -16,13 +17,15 @@ export default function Register() {
 
   const onLogin = async () => {
     try {
-      alert("Login");
+      // alert("Login");
       setLoading(true);
       const response = await axios.post("/api/users/login", user);
+      toast.success("Login Successfll");
       console.log("Login success", response.data);
       router.push("/");
     } catch (error: any) {
       console.log("Login failed", error.message);
+      toast.error("Something went wrong, Try again later!");
     } finally {
       setLoading(false);
     }
@@ -69,6 +72,7 @@ export default function Register() {
       <Link href="/register">
         New user ? <b>Register</b> here
       </Link>
+      <Toaster position="bottom-left" reverseOrder={false} />
     </div>
   );
 }
