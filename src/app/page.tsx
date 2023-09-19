@@ -22,8 +22,8 @@ export default function Home() {
   const getUserDetails = async () => {
     const res = await axios.get("/api/users/me");
     console.log(res.data);
-    setData(res.data.data);
-    toast.success(`Welcome ${data.username}`);
+    setData(res.data.data.username);
+    toast.success(`Welcome ${data}`);
   };
 
   useEffect(() => {
@@ -38,14 +38,8 @@ export default function Home() {
         ) : (
           <div>
             <h2>
-              <b className="font-semibold text-lg">id :</b> {data._id}
-            </h2>
-            <h2>
-              <b className="font-semibold text-lg">username :</b>{" "}
-              {data.username}
-            </h2>
-            <h2>
-              <b className="font-semibold text-lg">Email :</b> {data.email}
+              <b className="font-semibold text-lg">username : </b>
+              {data}
             </h2>
           </div>
         )}
